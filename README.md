@@ -1,4 +1,4 @@
-# AniFlix - Anime Streaming Web App
+# AniFlix - Anime Streaming Web
 ![Home](./images/homepage.png)
 
 ---
@@ -92,10 +92,3 @@ Aniflix is open-source software licensed under the MIT license. This means you'r
 
 Made with ❤️ by Dani Fernando
 © 2025 Aniflix Project. All rights reserved.
- 
-[![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat&logo=github)](#)  
-[![Discord](https://img.shields.io/badge/-Discord-black?style=flat&logo=discord)](#)  
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-black?style=flat&logo=linkedin)](#)
-```
-
----
