@@ -1,4 +1,4 @@
-# AniFlex - Anime Streaming Web App
+# AniFlix - Anime Streaming Web App
 ![Home](./images/homepage.png)
 
 ---
@@ -39,8 +39,8 @@ Smart suggestions based on your viewing history and preferences.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/dani-fernando/Aniflex.git
-   cd Aniflex
+   git clone https://github.com/dani-fernando/Aniflix.git
+   cd Aniflix
    ```
 
 2. **Run file index:**
@@ -52,7 +52,7 @@ Smart suggestions based on your viewing history and preferences.
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Here's how you can help improve AniFlex:
+We welcome contributions from the community! Here's how you can help improve Aniflix:
 
 1. Fork the repository.
 2. Create your feature branch:
@@ -82,7 +82,7 @@ We welcome contributions from the community! Here's how you can help improve Ani
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 
-AniFlex is open-source software licensed under the MIT license. This means you're free to use, modify, and distribute the code for personal and commercial purposes.
+Aniflix is open-source software licensed under the MIT license. This means you're free to use, modify, and distribute the code for personal and commercial purposes.
 
 [View Full License](#)
 
@@ -91,7 +91,7 @@ AniFlex is open-source software licensed under the MIT license. This means you'r
 ## Credit
 
 Made with ❤️ by Dani Fernando
-© 2025 AniFlex Project. All rights reserved.
+© 2025 Aniflix Project. All rights reserved.
  
 [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat&logo=github)](#)  
 [![Discord](https://img.shields.io/badge/-Discord-black?style=flat&logo=discord)](#)  
