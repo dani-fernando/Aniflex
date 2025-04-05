@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniFlix - Modern Anime Streaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f0e17;
+            color: #fffffe;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f0e17 0%, #2e2f3e 100%);
+        }
+        
+        .anime-card {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .anime-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .anime-card:hover .play-icon {
+            opacity: 1;
+        }
+        
+        .play-icon {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .episode-badge {
+            background-color: #ff8906;
+        }
+        
+        .genre-tag {
+            background-color: #2e2f3e;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ff8906;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 14, 23, 0.8);
+        }
+        
+        .dropdown-menu {
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 14, 23, 0.9);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0f0e17;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #ff8906;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e53170;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 border-b border-gray-800 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-white flex items-center">
+                    <span class="text-amber-500">Ani</span>Flix
+                </a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Popular</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Genres</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Schedule</a>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search anime..." class="search-input bg-gray-800 rounded-full py-2 px-4 pl-10 text-white w-64 focus:bg-gray-700 transition">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                
+                <div class="relative group">
+                    <button class="flex items-center space-x-2 focus:outline-none">
+                        <img src="https://wallpapers.com/images/hd/anime-pictures-4nnz376aw0qzp18q.jpg" alt="Profile" class="w-8 h-8 rounded-full object-cover">
+                        <i class="fas fa-chevron-down text-gray-300 text-xs"></i>
+                    </button>
+                    
+                    <div class="dropdown-menu absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Watchlist</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Settings</a>
+                        <div class="border-t border-gray-700"></div>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Sign out</a>
+                    </div>
+                </div>
+                
+                <button class="md:hidden text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Watch <span class="text-amber-500">Demon Slayer</span> Season 3 Now</h1>
+                    <p class="text-gray-300 mb-6">Tanjiro and his comrades embark on a new mission aboard the Mugen Train, where they encounter the demon Enmu. Meanwhile, the Flame Hashira Kyojuro Rengoku takes on the mission to eliminate the demon threat.</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-6 rounded-full flex items-center transition">
+                            <i class="fas fa-play mr-2"></i> Watch Now
+                        </button>
+                        <button class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-6 rounded-full flex items-center transition">
+                            <i class="fas fa-plus mr-2"></i> Add to List
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="https://cdn.myanimelist.net/images/anime/1286/99889.jpg" alt="Demon Slayer" class="w-full max-w-md rounded-lg shadow-2xl">
+                        <div class="absolute -bottom-4 -right-4 bg-amber-500 text-white font-bold py-1 px-3 rounded-full text-sm">
+                            EP 7
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Trending Section -->
+            <section class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold">Trending Now</h2>
+                    <a href="#" class="text-amber-500 hover:text-amber-400 text-sm font-medium">View All</a>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    <!-- Anime Card 1 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1171/109222.jpg" alt="Jujutsu Kaisen" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                EP 12
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Jujutsu Kaisen</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Action</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Supernatural</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 2 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1000/110531.jpg" alt="Attack on Titan" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                EP 24
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Attack on Titan: Final Season</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Action</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Drama</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 3 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1911/113611.jpg" alt="My Hero Academia" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                EP 15
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">My Hero Academia S5</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Superhero</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">School</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 4 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1806/126216.jpg" alt="Chainsaw Man" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                EP 8
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Chainsaw Man</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Action</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Horror</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 5 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1111/127508.jpg" alt="Spy x Family" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                EP 10
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Spy x Family Part 2</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Comedy</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Slice of Life</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Recently Added Section -->
+            <section class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold">Recently Added</h2>
+                    <a href="#" class="text-amber-500 hover:text-amber-400 text-sm font-medium">View All</a>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    <!-- Anime Card 1 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1258/126929.jpg" alt="Blue Lock" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                NEW
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Blue Lock</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Sports</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Psychological</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 2 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1228/125011.jpg" alt="Mob Psycho 100" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                NEW
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Mob Psycho 100 III</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Supernatural</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Comedy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 3 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1448/127956.jpg" alt="Bocchi the Rock" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transtransparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                NEW
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Bocchi the Rock!</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Music</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Comedy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 4 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1500/103005.jpg" alt="Vinland Saga" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                NEW
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">Vinland Saga S2</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Historical</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Drama</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Anime Card 5 -->
+                    <div class="anime-card relative rounded-lg overflow-hidden cursor-pointer">
+                        <div class="relative">
+                            <img src="https://cdn.myanimelist.net/images/anime/1091/128729.jpg" alt="The Eminence in Shadow" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                            <div class="absolute bottom-2 left-2 episode-badge text-white font-bold py-1 px-2 rounded text-xs">
+                                NEW
+                            </div>
+                            <div class="play-icon absolute inset-0 flex items-center justify-center">
+                                <div class="bg-amber-500 bg-opacity-90 rounded-full p-3">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-800">
+                            <h3 class="font-medium text-white truncate">The Eminence in Shadow</h3>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Action</span>
+                                <span class="genre-tag text-xs text-gray-300 px-2 py-1 rounded">Fantasy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Popular Genres Section -->
+            <section>
+                <h2 class="text-2xl font-bold mb-6">Popular Genres</h2>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <a href="#" class="genre-card bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Action
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-amber-500 to-red-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Adventure
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-pink-500 to-rose-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Romance
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-green-500 to-teal-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Fantasy
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Sci-Fi
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-red-500 to-amber-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Comedy
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Psychological
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Mystery
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-rose-500 to-pink-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Drama
+                    </a>
+                    <a href="#" class="genre-card bg-gradient-to-r from-teal-500 to-green-500 rounded-lg p-4 text-white font-medium flex items-center justify-center h-24 hover:opacity-90 transition">
+                        Slice of Life
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4">
+                        <span class="text-amber-500">Ani</span>Flix
+                    </h3>
+                    <p class="text-gray-400 mb-4">The best place to watch your favorite anime shows and movies.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Popular</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Genres</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Schedule</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">News</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">DMCA</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to get notified about new anime releases.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white py-2 px-4 rounded-l focus:outline-none w-full">
+                        <button class="bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded-r transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 AniFlix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div class="fixed inset-0 bg-gray-900 z-50 flex flex-col items-center justify-center hidden" id="mobileMenu">
+        <button class="absolute top-6 right-6 text-white text-2xl" id="closeMobileMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="w-full px-6">
+            <div class="relative mb-8">
+                <input type="text" placeholder="Search anime..." class="search-input bg-gray-800 rounded-full py-3 px-5 pl-12 text-white w-full focus:bg-gray-700 transition">
+                <i class="fas fa-search absolute left-5 top-4 text-gray-400"></i>
+            </div>
+            
+            <nav class="flex flex-col space-y-6 text-center">
+                <a href="#" class="text-white text-xl font-medium">Home</a>
+                <a href="#" class="text-white text-xl font-medium">Popular</a>
+                <a href="#" class="text-white text-xl font-medium">Genres</a>
+                <a href="#" class="text-white text-xl font-medium">Schedule</a>
+                <a href="#" class="text-white text-xl font-medium">My List</a>
+                <a href="#" class="text-white text-xl font-medium">Account</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.md\\:hidden button');
+            const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+            });
+            
+            closeMobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+            
+            // Anime card hover effect
+            const animeCards = document.querySelectorAll('.anime-card');
+            animeCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.querySelector('.play-icon').style.opacity = '1';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.querySelector('.play-icon').style.opacity = '0';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
